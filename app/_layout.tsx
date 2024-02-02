@@ -1,3 +1,4 @@
+import { theme } from "@/constants/theme";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -41,18 +42,13 @@ function RootLayoutNav() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#f4511e",
+          backgroundColor: theme.colors.bg.primary,
         },
-        headerTintColor: "#fff",
+        headerTintColor: theme.colors.brand.primary,
         headerTitleStyle: {
           fontWeight: "bold",
         },
       }}
     />
   );
-}
-
-{
-  /* <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack> */
 }
