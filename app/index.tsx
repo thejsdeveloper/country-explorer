@@ -72,7 +72,7 @@ export default function Home() {
 
       <FlatList
         data={countries}
-        renderItem={({ item }) => <Item country={item} />}
+        renderItem={({ item }) => <Item key={item.cca3} country={item} />}
         keyExtractor={(country) => country.cca3}
         ItemSeparatorComponent={Separator}
       />
