@@ -1,4 +1,3 @@
-import { getDataFromStore, setDataToStore } from "@/utils/asyncStorage";
 import * as React from "react";
 
 type Action<T> =
@@ -20,6 +19,7 @@ type State<T> = {
 };
 
 type FetchReducer<T> = (state: State<T>, action: Action<T>) => State<T>;
+type Cache<T> = Record<string, T>;
 
 const initialState = {
   error: undefined,
@@ -39,10 +39,8 @@ const reducer = <T>(state: State<T>, action: Action<T>): State<T> => {
   }
 };
 
-export default function useFetch<T = unknown>(
-  url: string,
-  options?: RequestInit
-) {
+export function useFetch<T = unknown>(url: string, options?: RequestInit) {
+  const cache = React.useRef<Cache<T>>({});
   const [state, dispatch] = React.useReducer<FetchReducer<T>>(
     reducer,
     initialState
@@ -57,7 +55,7 @@ export default function useFetch<T = unknown>(
       dispatch({ type: "loading" });
 
       try {
-        const cachedResponse = await getDataFromStore<T>(url);
+        const cachedResponse = cache.current[url];
 
         if (cachedResponse) {
           dispatch({ type: "fetched", payload: cachedResponse });
@@ -66,11 +64,11 @@ export default function useFetch<T = unknown>(
         const response = await fetch(url, options);
 
         if (!response.ok) {
-          throw new Error(response.statusText);
+          throw new Error(response.status.toString());
         }
 
         const json = (await response.json()) as T;
-        await setDataToStore<T>(url, json);
+        cache.current[url] = json;
 
         if (cancelRequest === false) {
           dispatch({ type: "fetched", payload: json });
