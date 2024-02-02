@@ -10,11 +10,6 @@ export default function CountryDetails() {
       <Stack.Screen
         options={{
           title: countryName,
-          headerStyle: { backgroundColor: "#f4511e" },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
         }}
       />
       <Text>Country Details!!!!</Text>
