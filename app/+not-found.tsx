@@ -1,3 +1,4 @@
+import { theme } from "@/constants/theme";
 import { Link, Stack } from "expo-router";
 import { StyleSheet, View, Text } from "react-native";
 
@@ -21,18 +22,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: theme.space.base,
   },
   title: {
-    fontSize: 20,
+    fontSize: theme.fontSizes.title,
     fontWeight: "bold",
   },
   link: {
-    marginTop: 15,
-    paddingVertical: 15,
+    marginTop: theme.space.base,
+    paddingVertical: theme.space.base,
   },
   linkText: {
-    fontSize: 14,
-    color: "#2e78b7",
+    fontSize: theme.fontSizes.body,
+    color: theme.colors.text.link,
   },
 });

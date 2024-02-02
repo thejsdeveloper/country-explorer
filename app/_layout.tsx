@@ -47,6 +47,7 @@ function RootLayoutNav() {
         headerTintColor: theme.colors.brand.primary,
         headerTitleStyle: {
           fontWeight: "bold",
+          fontSize: theme.fontSizes.title,
         },
       }}
     />
