@@ -1,1 +1,9 @@
-export const sizes = ["8px", "16px", "32px", "64px", "128px"];
+export const sizes: Record<"sm" | "md" | "base" | "lg" | "xl" | "xxl", number> =
+  {
+    sm: 4,
+    md: 8,
+    base: 16,
+    lg: 32,
+    xl: 64,
+    xxl: 128,
+  };
