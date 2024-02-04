@@ -2,6 +2,8 @@
 
 A react Native app to search the country and see some details about country. Project uses [Expo SDK](https://docs.expo.dev/) to manage and build app and [Rest Countries](https://restcountries.com/) for getting list of countries and details.
 
+<img src="./screenshots/app.gif">
+
 Read more about [Expo Development Process]
 
 ## Table of contents
@@ -22,11 +24,11 @@ Read more about [Expo Development Process]
 
 ## Requirements
 
-| Requirement  | Status | Description                                       |
-| ------------ | ------ | ------------------------------------------------- |
-| Homepage     | ✅     | A Screen to show list of countries and search bar |
-| Search bar   | ✅     | A search bar to search the countries              |
-| Details Page | ✅     | A Screen to see details of selected country       |
+| Requirement  | Status | Description                                       | Information Shown                                                 |
+| ------------ | ------ | ------------------------------------------------- | ----------------------------------------------------------------- |
+| Homepage     | ✅     | A Screen to show list of countries and search bar | Flag Icon, Country Name, Country Code                             |
+| Search bar   | ✅     | A search bar to search the countries              | Search Icon, Input box, Clear Icon                                |
+| Details Page | ✅     | A Screen to see details of selected country       | Country flag, Flag description, Capital, Population, Coat of Arms |
 
 ## How to run
 
