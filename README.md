@@ -1,14 +1,17 @@
 # React Native - Country Explorer
 
-A react Native app to search the country and see some details about country. Project uses [Expo SDK](https://docs.expo.dev/) to manage and build app and [Rest Countries](https://restcountries.com/) for getting list of countries and details.
+A react Native app to search the country and see some details about country. Project uses [Expo SDK](https://docs.expo.dev/) to manage and build app. Read about [Expo Development Process] to know more. Data for the app is fetched from [Rest Countries](https://restcountries.com/).
 
-<img src="./screenshots/app.gif">
+## Demo Gif
 
-Read more about [Expo Development Process]
+<center>
+<img src="./screenshots/app.gif" height="500" />
+</center>
 
 ## Table of contents
 
 - [ React Native - Country Explorer](#react-native---country-explorer)
+- [Demo Gif](#demo-gif)
 - [Pre-requisites](#pre-requisites)
 - [Requirements](#requirements)
 - [How to run](#how-to-run)
