@@ -87,7 +87,7 @@ export default function Home() {
     <View style={styles.container}>
       <Stack.Screen
         options={{
-          title: "Countries",
+          title: "Country Explorer",
         }}
       />
       <View style={styles.searchBar}>
