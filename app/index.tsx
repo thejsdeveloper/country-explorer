@@ -6,26 +6,17 @@ import {
   Text,
   View,
   StatusBar,
-  Image,
   Pressable,
 } from "react-native";
 import { Country } from "@/types/country";
 import { theme } from "@/constants/theme";
 import { useCountries } from "@/hooks/useCountries/useCountries";
 import Search from "@/components/Search/Search";
-import Loading from "@/components/Loading/Loading";
 import Separator from "@/components/Separator/Separator";
 import { CIRCLE_SIZE } from "@/constants/dimension";
-
-const Error = () => {
-  return (
-    <View style={[styles.container, styles.center]}>
-      <Text style={styles.body}>
-        There is some issue while loading countries.
-      </Text>
-    </View>
-  );
-};
+import { Image } from "expo-image";
+import Error from "@/components/Error/Error";
+import CountryListLoading from "@/components/Loading/CountryListLoading";
 
 const Empty = () => {
   return (
@@ -43,7 +34,11 @@ const Item = ({ country }: { country: Country }) => {
   return (
     <Pressable
       style={styles.item}
-      onPress={() => router.navigate(`/countries/${country.name.common}`)}
+      onPress={() => {
+        router.navigate(
+          `/countries/${country.name.common}?countryCode=${country.cca3}`
+        );
+      }}
     >
       <Image
         style={styles.flag}
@@ -51,7 +46,9 @@ const Item = ({ country }: { country: Country }) => {
           uri: country.flags.png,
         }}
       />
-      <Text style={styles.body}>{country.name.common}</Text>
+      <Text style={{ ...styles.body, flex: 1 }} numberOfLines={1}>
+        {country.name.common}
+      </Text>
       {!!country.idd.root && (
         <Text style={[styles.body, styles.code]}>
           {country.idd.root}
@@ -64,7 +61,10 @@ const Item = ({ country }: { country: Country }) => {
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const { countries, error } = useCountries({ searchTerm });
+  const { countries, error } = useCountries({
+    searchTerm,
+    filters: ["name", "cca3", "flags", "idd"],
+  });
   /**
    * if we get 404 while searching then we simply sho the Empty Component
    * in Flatlist and do not render Error component
@@ -73,7 +73,12 @@ export default function Home() {
     searchTerm.length > 0 && error?.message === "404";
 
   if (error && !countryNotFoundDuringSearch) {
-    return <Error />;
+    return (
+      <Error
+        title="There is some issue while loading country."
+        message="Please go back and try again"
+      />
+    );
   }
 
   const loading = !error && !countries;
@@ -82,7 +87,7 @@ export default function Home() {
     <View style={styles.container}>
       <Stack.Screen
         options={{
-          title: "Countries",
+          title: "Country Explorer",
         }}
       />
       <View style={styles.searchBar}>
@@ -92,9 +97,10 @@ export default function Home() {
         />
       </View>
       {loading ? (
-        <Loading />
+        <CountryListLoading />
       ) : (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={countries}
           renderItem={({ item }) => <Item key={item.cca3} country={item} />}
           keyExtractor={(country) => country.cca3}
@@ -124,6 +130,7 @@ const styles = StyleSheet.create({
   body: {
     fontSize: theme.fontSizes.body,
     color: theme.colors.text.primary,
+    fontFamily: theme.fonts.body,
   },
   title: {
     fontSize: theme.fontSizes.title,

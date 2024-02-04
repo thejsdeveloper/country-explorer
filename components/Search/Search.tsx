@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { EvilIcons } from "@expo/vector-icons";
 import { theme } from "@/constants/theme";
@@ -30,6 +30,15 @@ export default function Search({
         placeholder={placeholder}
         onChangeText={setSearchTerm}
       />
+      {!!searchTerm.length && (
+        <Pressable
+          onPress={() => {
+            setSearchTerm("");
+          }}
+        >
+          <EvilIcons name="close" size={24} color="black" />
+        </Pressable>
+      )}
     </View>
   );
 }

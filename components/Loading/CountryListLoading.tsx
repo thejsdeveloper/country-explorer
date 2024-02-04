@@ -9,7 +9,7 @@ import { CIRCLE_SIZE } from "@/constants/dimension";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function Loading() {
+export default function CountryListLoading() {
   return (
     <>
       <View style={styles.container}>
