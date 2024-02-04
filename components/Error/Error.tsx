@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   title: {
+    fontWeight: "500",
     fontSize: theme.fontSizes.title,
     color: theme.colors.text.primary,
   },

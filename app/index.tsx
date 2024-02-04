@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.fontSizes.title,
-    fontWeight: "bold",
+    fontWeight: "500",
     color: theme.colors.text.primary,
   },
   flag: {
