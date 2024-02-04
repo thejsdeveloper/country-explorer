@@ -46,7 +46,9 @@ const Item = ({ country }: { country: Country }) => {
           uri: country.flags.png,
         }}
       />
-      <Text style={styles.body}>{country.name.common}</Text>
+      <Text style={{ ...styles.body, flex: 1 }} numberOfLines={1}>
+        {country.name.common}
+      </Text>
       {!!country.idd.root && (
         <Text style={[styles.body, styles.code]}>
           {country.idd.root}
@@ -129,7 +131,6 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     color: theme.colors.text.primary,
     fontFamily: theme.fonts.body,
-    textAlign: "center",
   },
   title: {
     fontSize: theme.fontSizes.title,
