@@ -23,9 +23,9 @@ const Empty = () => {
     <View style={[styles.container, styles.center]}>
       <Text style={[styles.title, styles.spacer]}>No Matching Result</Text>
       <Text style={[styles.body, styles.spacer]}>
-        There is no matching country for your search
+        There is no matching country for your search. Please try other search
+        term
       </Text>
-      <Text style={styles.body}>Please try other search term</Text>
     </View>
   );
 };
