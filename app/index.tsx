@@ -12,11 +12,11 @@ import { Country } from "@/types/country";
 import { theme } from "@/constants/theme";
 import { useCountries } from "@/hooks/useCountries/useCountries";
 import Search from "@/components/Search/Search";
-import Loading from "@/components/Loading/Loading";
 import Separator from "@/components/Separator/Separator";
 import { CIRCLE_SIZE } from "@/constants/dimension";
 import { Image } from "expo-image";
 import Error from "@/components/Error/Error";
+import CountryListLoading from "@/components/Loading/CountryListLoading";
 
 const Empty = () => {
   return (
@@ -35,7 +35,9 @@ const Item = ({ country }: { country: Country }) => {
     <Pressable
       style={styles.item}
       onPress={() => {
-        router.navigate(`/countries/${country.cca3}`);
+        router.navigate(
+          `/countries/${country.name.common}?countryCode=${country.cca3}`
+        );
       }}
     >
       <Image
@@ -93,9 +95,10 @@ export default function Home() {
         />
       </View>
       {loading ? (
-        <Loading />
+        <CountryListLoading />
       ) : (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={countries}
           renderItem={({ item }) => <Item key={item.cca3} country={item} />}
           keyExtractor={(country) => country.cca3}
@@ -125,6 +128,8 @@ const styles = StyleSheet.create({
   body: {
     fontSize: theme.fontSizes.body,
     color: theme.colors.text.primary,
+    fontFamily: theme.fonts.body,
+    textAlign: "center",
   },
   title: {
     fontSize: theme.fontSizes.title,
