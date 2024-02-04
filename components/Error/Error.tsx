@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
   body: {
     fontSize: theme.fontSizes.body,
     color: theme.colors.text.primary,
+    fontFamily: theme.fonts.body,
+    textAlign: "center",
   },
   title: {
     fontSize: theme.fontSizes.title,
