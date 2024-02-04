@@ -43,6 +43,12 @@
         "projectId": "d1149ba7-357e-4a98-8c9a-825e7c16fe22"
       }
     },
-    "owner": "thejsdeveloper"
+    "owner": "thejsdeveloper",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d1149ba7-357e-4a98-8c9a-825e7c16fe22"
+    }
   }
 }
