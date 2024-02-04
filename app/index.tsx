@@ -16,16 +16,7 @@ import Loading from "@/components/Loading/Loading";
 import Separator from "@/components/Separator/Separator";
 import { CIRCLE_SIZE } from "@/constants/dimension";
 import { Image } from "expo-image";
-
-const Error = () => {
-  return (
-    <View style={[styles.container, styles.center]}>
-      <Text style={styles.body}>
-        There is some issue while loading countries.
-      </Text>
-    </View>
-  );
-};
+import Error from "@/components/Error/Error";
 
 const Empty = () => {
   return (
@@ -44,7 +35,7 @@ const Item = ({ country }: { country: Country }) => {
     <Pressable
       style={styles.item}
       onPress={() => {
-        router.navigate(`/countries/${country.name.common}`);
+        router.navigate(`/countries/${country.cca3}`);
       }}
     >
       <Image
@@ -78,7 +69,12 @@ export default function Home() {
     searchTerm.length > 0 && error?.message === "404";
 
   if (error && !countryNotFoundDuringSearch) {
-    return <Error />;
+    return (
+      <Error
+        title="There is some issue while loading country."
+        message="Please go back and try again"
+      />
+    );
   }
 
   const loading = !error && !countries;
