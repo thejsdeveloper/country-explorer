@@ -1,10 +1,16 @@
-import { COUNTRIES_URL, COUNTRY_SEARCH_URL } from "@/constants/endpoint";
+import {
+  COUNTRIES_URL,
+  COUNTRY_DETAILS_URL,
+  COUNTRY_SEARCH_URL,
+} from "@/constants/endpoint";
 import { Country } from "@/types/country";
 import { useFetch } from "../useFetch/useFetch";
+
 type UseCountriesProps = {
   searchTerm?: string;
   filters?: Array<keyof Country>;
 };
+
 export const useCountries = ({
   searchTerm = "",
   filters,
@@ -28,6 +34,24 @@ export const useCountries = ({
 };
 
 type UseCountryDetailsProps = {
-  filters?: keyof Country;
-  countryCode: Pick<Country, "cca2">;
+  filters?: Array<keyof Country>;
+  countryCode: string;
+};
+
+export const useCountryDetails = ({
+  filters,
+  countryCode,
+}: UseCountryDetailsProps) => {
+  let url = `${COUNTRY_DETAILS_URL}/${countryCode}`;
+
+  if (filters) {
+    url = `${url}?filters=${filters.toString()}`;
+  }
+
+  const { data, error } = useFetch<Country[]>(url);
+
+  return {
+    country: data?.[0],
+    error,
+  };
 };
