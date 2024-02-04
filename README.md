@@ -4,9 +4,9 @@ A react Native app to search the country and see some details about country. Pro
 
 ## Demo Gif
 
-<center>
+<div align="center">
 <img src="./screenshots/app.gif" height="500" />
-</center>
+</div>
 
 ## Table of contents
 
@@ -92,18 +92,20 @@ I have deployed the app using [EAS] (Expo Application services)
 If you want to see the deployed app Download the [Expo Go] app and scan below QR
 
 #### iOS
-
-![ios qr screenshot](./screenshots/iOS.png)
+<div align="center">
+<img src="./screenshots/iOS.png"/>
+</div>
 
 #### Android
-
-![android qr screenshot](./screenshots/android.png)
+<div align="center">
+<img src="./screenshots/android.png"/>
+</div>
 
 Once QR is scanned successfully, you will be able to see following screen
 
-<center>
+<div align="center">
 <img src="./screenshots/homepage.png" width="200" height="400" /> 
-</center>
+</div>
 
 ## Folder structure
 
@@ -138,8 +140,6 @@ I am using [Expo Router] to manage the routing.
 | ------------------------------------------ | ------------ | ----------------------------------------------------------------- |
 | `/`                                        | Homepage     | <img src="./screenshots/homepage.png" width="200" height="400" /> |
 | `country/{countryName}?countryCode={code}` | Details page | <img src="./screenshots/details.png" width="200" height="400" />  |
-
----
 
 ## Improvements
 
