@@ -3,11 +3,17 @@ import { Country } from "@/types/country";
 import { useFetch } from "../useFetch/useFetch";
 type UseCountriesProps = {
   searchTerm?: string;
+  filters?: Array<keyof Country>;
 };
-export const useCountries = ({ searchTerm = "" }: UseCountriesProps = {}) => {
-  const url = searchTerm
-    ? `${COUNTRY_SEARCH_URL}/${searchTerm}`
-    : COUNTRIES_URL;
+export const useCountries = ({
+  searchTerm = "",
+  filters,
+}: UseCountriesProps = {}) => {
+  let url = searchTerm ? `${COUNTRY_SEARCH_URL}/${searchTerm}` : COUNTRIES_URL;
+
+  if (filters) {
+    url = `${url}?fields=${filters.toString()}`;
+  }
 
   const { data, error } = useFetch<Country[]>(url);
 
@@ -19,4 +25,9 @@ export const useCountries = ({ searchTerm = "" }: UseCountriesProps = {}) => {
     countries: data,
     error,
   };
+};
+
+type UseCountryDetailsProps = {
+  filters?: keyof Country;
+  countryCode: Pick<Country, "cca2">;
 };

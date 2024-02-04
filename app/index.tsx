@@ -66,7 +66,10 @@ const Item = ({ country }: { country: Country }) => {
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const { countries, error } = useCountries({ searchTerm });
+  const { countries, error } = useCountries({
+    searchTerm,
+    filters: ["name", "cca3", "flags", "idd"],
+  });
   /**
    * if we get 404 while searching then we simply sho the Empty Component
    * in Flatlist and do not render Error component
