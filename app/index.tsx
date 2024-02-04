@@ -6,7 +6,6 @@ import {
   Text,
   View,
   StatusBar,
-  Image,
   Pressable,
 } from "react-native";
 import { Country } from "@/types/country";
@@ -16,6 +15,7 @@ import Search from "@/components/Search/Search";
 import Loading from "@/components/Loading/Loading";
 import Separator from "@/components/Separator/Separator";
 import { CIRCLE_SIZE } from "@/constants/dimension";
+import { Image } from "expo-image";
 
 const Error = () => {
   return (
@@ -43,7 +43,9 @@ const Item = ({ country }: { country: Country }) => {
   return (
     <Pressable
       style={styles.item}
-      onPress={() => router.navigate(`/countries/${country.name.common}`)}
+      onPress={() => {
+        router.navigate(`/countries/${country.name.common}`);
+      }}
     >
       <Image
         style={styles.flag}
