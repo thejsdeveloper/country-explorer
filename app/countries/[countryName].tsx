@@ -34,7 +34,13 @@ export default function CountryDetails() {
   const loading = !error && !country;
 
   return (
-    <ScrollView style={[styles.container]} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={[styles.container]}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        paddingVertical: theme.space.lg,
+      }}
+    >
       <Stack.Screen
         options={{
           title: countryName,
@@ -45,51 +51,45 @@ export default function CountryDetails() {
         <CountryDetailsLoading />
       ) : (
         <>
-          <View style={[styles.flagContainer, styles.shadow]}>
+          <View style={[styles.card]}>
             <Image
               source={{ uri: country?.flags.png }}
               alt={country?.flags.alt}
               style={styles.flag}
-              contentFit="cover"
+              contentFit="contain"
             />
+            <Spacer />
+            {country?.flags.alt && (
+              <Text style={styles.body}>{country.flags.alt}</Text>
+            )}
           </View>
           <Spacer />
-          {country?.flags.alt && (
-            <Text style={styles.body}>{country.flags.alt}</Text>
-          )}
-          <Spacer />
-          {country?.capital && (
-            <View style={[styles.row, styles.center]}>
-              <Text style={styles.title}>Capital</Text>
-              <Text style={styles.body}>{country?.capital}</Text>
+          <View style={styles.card}>
+            {country?.capital && (
+              <View style={[styles.row]}>
+                <Text style={styles.title}>Capital</Text>
+                <Text style={styles.body}>{country?.capital}</Text>
+              </View>
+            )}
+            <Spacer />
+            <View style={[styles.row]}>
+              <Text style={styles.title}>Population</Text>
+              <Text style={styles.body}>{country?.population || 0}</Text>
             </View>
-          )}
-          <Spacer />
-          <View style={[styles.row, styles.center]}>
-            <Text style={styles.title}>Population</Text>
-            <Text style={styles.body}>{country?.population || 0}</Text>
           </View>
           <Spacer />
           {!!country?.coatOfArms.png && (
-            <>
+            <View style={[styles.card]}>
               <Text style={[styles.title, styles.center]}>Coat of Arms</Text>
               <Spacer />
-              <View
-                style={[
-                  styles.flagContainer,
-                  styles.shadow,
-                  styles.paddingBase,
-                ]}
-              >
-                {!imageLoaded && <FlagLoader />}
-                <Image
-                  source={{ uri: country?.coatOfArms.png }}
-                  style={styles.flag}
-                  contentFit="contain"
-                  onLoadEnd={() => setImageLoaded(true)}
-                />
-              </View>
-            </>
+              {!imageLoaded && <FlagLoader />}
+              <Image
+                source={{ uri: country?.coatOfArms.png }}
+                style={styles.flag}
+                contentFit="contain"
+                onLoadEnd={() => setImageLoaded(true)}
+              />
+            </View>
           )}
         </>
       )}
@@ -100,10 +100,8 @@ export default function CountryDetails() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: theme.colors.bg.primary,
-    padding: theme.space.base,
-    marginBottom: theme.space.xl,
+    backgroundColor: theme.colors.bg.tertiary,
+    paddingHorizontal: theme.space.base,
   },
   center: {
     alignItems: "center",
@@ -145,5 +143,18 @@ const styles = StyleSheet.create({
     color: theme.colors.text.primary,
     marginRight: theme.space.base,
     textAlign: "center",
+  },
+  card: {
+    padding: theme.space.lg,
+    backgroundColor: theme.colors.bg.primary,
+    borderRadius: theme.sizes.md,
+    shadowColor: theme.colors.bg.tertiary,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
