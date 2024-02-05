@@ -145,8 +145,9 @@ I am using [Expo Router] to manage the routing.
 
 I think we can do some improvement in current app to make it more efficient and user friendly.
 
-- `Offline support` We can use [Asyc storage] to store the countries and show it even when user is offline.
+- **Offline support**:  We can use [Asyc storage] to store the countries and show it even when user is offline.
 - We can show more details like country' `map` and its `geographical details` which we receive in the response.
+- We can give option to sort the countries on home page 
 - For more immersive experience we can also [Generate Blur Hash on Server] for a placeholder image using [Blur Hash] which is supported by default on [Expo image]
 
 <p align=center>--- End ---</p>
