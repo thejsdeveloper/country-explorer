@@ -19,7 +19,7 @@ A react Native app to search the country and see some details about country. Pro
 - [Deployed Version](#deployed-version)
 - [Folder structure](#folder-structure)
 - [Available Screens](#available-screens)
-- [Improvements](#improvements)`TODO`
+- [Things to Improve](#things-to-improve)
 
 ## Pre-requisites
 
@@ -141,12 +141,13 @@ I am using [Expo Router] to manage the routing.
 | `/`                                        | Homepage     | <img src="./screenshots/homepage.png" width="200" height="400" /> |
 | `country/{countryName}?countryCode={code}` | Details page | <img src="./screenshots/details.png" width="200" height="400" />  |
 
-## Improvements
+## Things to Improve
 
 I think we can do some improvement in current app to make it more efficient and user friendly.
 
 - `Offline support` We can use [Asyc storage] to store the countries and show it even when user is offline.
 - We can show more details like country' `map` and its `geographical details` which we receive in the response.
+- For more immersive experience we can also [Generate Blur Hash on Server] for a placeholder image using [Blur Hash] which is supported by default on [Expo image]
 
 <p align=center>--- End ---</p>
 
@@ -157,3 +158,6 @@ I think we can do some improvement in current app to make it more efficient and 
 [Expo Development Process]: https://docs.expo.dev/workflow/overview/
 [Expo Router]: https://docs.expo.dev/router/introduction/
 [Asyc storage]: https://react-native-async-storage.github.io/async-storage/docs/usage/
+[Blur Hash]: https://blurha.sh/
+[Generate Blur Hash on Server]: https://docs.expo.dev/versions/latest/sdk/image/#generating-a-blurhash-on-a-server
+[Expo image]: https://docs.expo.dev/versions/latest/sdk/image/
