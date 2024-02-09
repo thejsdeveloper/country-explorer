@@ -4,7 +4,7 @@ export default function useDebounce<T>(value: T, delay: number) {
   const [state, setState] = React.useState(value);
 
   React.useEffect(() => {
-    const id = window.setTimeout(() => {
+    const id = setTimeout(() => {
       setState(value);
     }, delay);
 
